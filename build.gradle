@@ -6,21 +6,11 @@ plugins {
 
 group 'com.evokly'
 
-publishing {
-    publications {
-        MyPublication(MavenPublication) {
-            from components.java
-            groupId 'com.evokly'
-            artifactId 'kafka-connect-mqtt'
-            version '1.3-SNAPSHOT'
-        }
-    }
-}
+project.version = '1.3.1'
 
 ext {
     kafkaVersion = '2.8.0'
 }
-
 
 processResources {
     expand project.properties
@@ -48,10 +38,4 @@ dependencies {
 task copyRuntimeLibs(type: Copy) {
     into "$buildDir/output/lib"
     from configurations.runtime
-}
-
-publishing.publications {
-    gpr(MavenPublication) {
-        from(components.java)
-    }
 }
