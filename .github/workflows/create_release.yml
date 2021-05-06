@@ -1,0 +1,53 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java_version: ["8", "11", "15"]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK v${{ matrix.java_version}}
+        uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: ${{ matrix.java_version }}
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build and ZIP jars
+        run: |
+          ./gradlew clean jar
+          zip --junk-paths kafka-connect-mqtt-jars-${{ matrix.java_version}.zip ./build/output/lib/* ./build/libs/*
+
+      - name: Upload jars ZIP artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: jars-zip
+          path: kafka-connect-mqtt-jars*.zip
+
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download jars ZIP artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: jars-zip
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: kafka-connect-mqtt-jars*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
