@@ -1,9 +1,13 @@
-# Mqtt to Apache Kafka Connect [![Build Status](https://travis-ci.org/evokly/kafka-connect-mqtt.svg?branch=master)](https://travis-ci.org/evokly/kafka-connect-mqtt) [ ![Download](https://api.bintray.com/packages/evokly/maven/kafka-connect-mqtt/images/download.svg) ](https://bintray.com/evokly/maven/kafka-connect-mqtt/_latestVersion)
+# MQTT to Apache Kafka Connect
+
+![Build](https://github.com/drewsilcock/kafka-connect-mqtt/actions/workflows/build/badge.svg)
 
 ## Prerequisites
-* [Apache Kafka](https://kafka.apache.org/) (0.10.x version) is publish-subscribe messaging rethought as a distributed commit log.
+
+* [Apache Kafka](https://kafka.apache.org/) (2.8.x version) is publish-subscribe messaging rethought as a distributed commit log.
 
 ## Usage
+
 **For development:**
 
 * run check (checkstyle, findbugs, test):  
@@ -26,7 +30,7 @@
 
 The configuration can be added to a kafka connect kubernetes deployment descriptor like this:
 
-```
+```yaml
 spec:
    class: com.evokly.kafka.connect.mqtt.MqttSourceConnector
    tasksMax: 2
@@ -56,4 +60,5 @@ spec:
 | message_processor_class | DumbProcessor.class | message processor to use |
 
 ## License
+
 See [LICENSE](LICENSE) file for License

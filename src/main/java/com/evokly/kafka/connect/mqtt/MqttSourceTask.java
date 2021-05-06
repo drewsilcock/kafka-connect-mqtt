@@ -147,18 +147,6 @@ public class MqttSourceTask extends SourceTask implements MqttCallback {
 	 */
 	@Override public void messageArrived(String topic, MqttMessage message) {
 		log.debug("[{}] New message on '{}' arrived.", mMqttClientId, topic);
-		String legalChars = "[a-zA-Z0-9/_\\-]";
-		int maxNameLength = 249;
-		if (topic.length() > maxNameLength) {
-			log.warn("Topic [{}] exceeds max length of {} characters!", topic, maxNameLength);
-			return;
-		}
-		Matcher matcher = Pattern.compile(legalChars + "+").matcher(topic);
-		if (!matcher.matches()) {
-			log.warn("Topic [{}] contains illegal characters, only [{}] are allowed!", topic, legalChars);
-			return;
-		}
-
 		this.mQueue.add(mConfig.getConfiguredInstance(MqttSourceConstant.MESSAGE_PROCESSOR, MqttMessageProcessor.class).process(topic, message));
 	}
 
