@@ -50,16 +50,6 @@ task copyRuntimeLibs(type: Copy) {
     from configurations.runtime
 }
 
-publishing.repositories {
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/SmartsquareGmbH/kafka-connect-mqtt")
-        credentials {
-            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") ?: System.getenv("PASSWORD")
-        }
-    }
-}
 publishing.publications {
     gpr(MavenPublication) {
         from(components.java)
