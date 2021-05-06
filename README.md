@@ -1,6 +1,6 @@
 # MQTT to Apache Kafka Connect
 
-![Build](https://github.com/drewsilcock/kafka-connect-mqtt/actions/workflows/build/badge.svg)
+[![Check and build](https://github.com/drewsilcock/kafka-connect-mqtt/actions/workflows/build.yml/badge.svg)](https://github.com/drewsilcock/kafka-connect-mqtt/actions/workflows/build.yml)
 
 ## Prerequisites
 
