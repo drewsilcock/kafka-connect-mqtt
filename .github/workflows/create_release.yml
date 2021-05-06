@@ -28,7 +28,7 @@ jobs:
       - name: Build and ZIP jars
         run: |
           ./gradlew clean jar
-          zip --junk-paths kafka-connect-mqtt-jars-${{ matrix.java_version}.zip ./build/output/lib/* ./build/libs/*
+          zip --junk-paths kafka-connect-mqtt-jars-${{ matrix.java_version }}.zip ./build/output/lib/* ./build/libs/*
 
       - name: Upload jars ZIP artifact
         uses: actions/upload-artifact@v2
