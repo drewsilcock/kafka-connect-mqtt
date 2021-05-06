@@ -27,13 +27,13 @@ jobs:
 
       - name: Build and ZIP jars
         run: |
-          ./gradlew clean jar
+          ./gradlew clean jar copyRuntimeLibs
           zip --junk-paths kafka-connect-mqtt-jars-${{ matrix.java_version }}.zip ./build/output/lib/* ./build/libs/*
 
       - name: Upload jars ZIP artifact
         uses: actions/upload-artifact@v2
         with:
-          name: jars-zip
+          name: built-jars-zips
           path: kafka-connect-mqtt-jars*.zip
 
   release:
@@ -45,7 +45,7 @@ jobs:
       - name: Download jars ZIP artifacts
         uses: actions/download-artifact@v2
         with:
-          name: jars-zip
+          name: built-jars-zips
 
       - name: Create release
         uses: softprops/action-gh-release@v1
