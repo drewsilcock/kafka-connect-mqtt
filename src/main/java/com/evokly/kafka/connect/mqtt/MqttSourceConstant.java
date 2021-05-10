@@ -20,6 +20,7 @@ public class MqttSourceConstant {
     public static final String MQTT_SSL_CA_CERT = "mqtt.ssl.ca_cert";
     public static final String MQTT_SSL_CERT = "mqtt.ssl.cert";
     public static final String MQTT_SSL_PRIV_KEY = "mqtt.ssl.key";
+    public static final String MQTT_SSL_DISABLE_HOSTNAME_VERIFICATION = "mqtt.ssl.disable_hostname_verification";
     public static final String MQTT_USERNAME = "mqtt.user";
 
     public static final String MQTT_PASSWORD = "mqtt.password";

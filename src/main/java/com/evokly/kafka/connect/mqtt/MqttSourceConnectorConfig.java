@@ -58,6 +58,9 @@ public class MqttSourceConnectorConfig extends AbstractConfig {
                 .define(MqttSourceConstant.MQTT_SSL_PRIV_KEY, Type.STRING, null, Importance.LOW,
                         "cert priv key to use if using ssl",
                         "SSL", 3, ConfigDef.Width.LONG, "Key", MODE_SSL_RECOMMENDER)
+                .define(MqttSourceConstant.MQTT_SSL_DISABLE_HOSTNAME_VERIFICATION, Type.BOOLEAN, false, Importance.LOW,
+                        "whether to disable hostname verification for the MQTT broker when connecting over TLS.",
+                        "SSL", 4, ConfigDef.Width.LONG, "Disable SSL hostname verification", MODE_SSL_RECOMMENDER)
                 .define(MqttSourceConstant.MQTT_USERNAME, Type.STRING, null, Importance.MEDIUM,
                         "username to authenticate to mqtt broker")
                 .define(MqttSourceConstant.MQTT_PASSWORD, Type.STRING, null, Importance.MEDIUM,
